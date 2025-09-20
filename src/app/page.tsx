@@ -30,14 +30,18 @@ type SectionProps = {
 function Section({ headingLevel = 2, headingText, paragraph, imgRef, imgSrc, imgAlt, reverse = false, sectionRef }: SectionProps) {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
   return (
-    <section ref={sectionRef} className={section}>
-      <HeadingTag className={heading + (headingLevel === 1 ? " text-6xl" : " text-5xl") } style={{ color: '#c6d0f5' }}>
-        <span style={{ borderRight: "2px solid #c6d0f5", paddingRight: "2px" }}>{headingText}</span>
-      </HeadingTag>
-      <div className="w-[90vw] max-w-[90vw] mx-auto mb-4">
-        <p className="animated-text text-2xl text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-blue-200 leading-relaxed text-center w-full font-[Fira_Mono,Menlo,monospace]">
-          {paragraph.intro}
-        </p>
+    <section ref={sectionRef} className={section + " mx-auto"}>
+      <div className="w-full flex justify-center">
+        <HeadingTag className={heading + (headingLevel === 1 ? " text-6xl" : " text-5xl") } style={{ color: '#c6d0f5' }}>
+          <span style={{ borderRight: "2px solid #c6d0f5", paddingRight: "2px" }}>{headingText}</span>
+        </HeadingTag>
+      </div>
+      <div className="w-full flex justify-center mb-4">
+        <div className="w-[90vw] max-w-[90vw]">
+          <p className="animated-text text-2xl text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-blue-200 leading-relaxed text-center w-full font-[Fira_Mono,Menlo,monospace]">
+            {paragraph.intro}
+          </p>
+        </div>
       </div>
       <div className={container}>
         {!reverse && (
