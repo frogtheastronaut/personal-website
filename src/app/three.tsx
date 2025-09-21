@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export default function DuckThree() {
-	const mountRef = useRef(null);
+	const mountRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		let duck: THREE.Object3D | null = null;
@@ -25,8 +25,9 @@ export default function DuckThree() {
 		renderer.domElement.style.zIndex = "0"; // Behind text
 		renderer.domElement.style.pointerEvents = "none";
 
-		if (mountRef.current) {
-			mountRef.current.appendChild(renderer.domElement);
+		const mountNode = mountRef.current;
+		if (mountNode) {
+			mountNode.appendChild(renderer.domElement);
 		}
 
 		// Lighting
@@ -38,16 +39,18 @@ export default function DuckThree() {
 
 		// Load duck.glb
 		const loader = new GLTFLoader();
-		loader.load("/objects/duckie.glb", (gltf) => {
+		loader.load("/objects/duckie.glb", (gltf: { scene: THREE.Object3D }) => {
 			duck = gltf.scene;
-			duck.scale.set(0.7, 0.7, 0.7);
-			scene.add(duck);
+			if (duck) {
+				duck.scale.set(0.7, 0.7, 0.7);
+				scene.add(duck);
+			}
 		});
 
 		// Cursor tracking
 		const target = new THREE.Vector3(0, 0, 0);
 		const lastCursor = { x: 0, y: 0 };
-		const onMouseMove = (e) => {
+		const onMouseMove = (e: MouseEvent) => {
 			// Convert cursor to normalized device coordinates
 			const x = (e.clientX / window.innerWidth) * 2 - 1;
 			const y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -87,8 +90,8 @@ export default function DuckThree() {
 			if (animationId) cancelAnimationFrame(animationId);
 			if (renderer) {
 				renderer.dispose();
-				if (renderer.domElement && mountRef.current) {
-					mountRef.current.removeChild(renderer.domElement);
+				if (renderer.domElement && mountNode) {
+					mountNode.removeChild(renderer.domElement);
 				}
 			}
 		};
