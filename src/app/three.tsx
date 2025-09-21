@@ -7,7 +7,8 @@ export default function DuckThree() {
 	const mountRef = useRef(null);
 
 	useEffect(() => {
-		let duck, animationId;
+		let duck: THREE.Object3D | null = null;
+		let animationId: number | null = null;
 		const spinDirection = new THREE.Vector3(0, 0, 0);
 		let isSpinning = false;
 
