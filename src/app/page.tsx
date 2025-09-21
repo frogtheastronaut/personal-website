@@ -271,7 +271,6 @@ export default function Page() {
               various games in Unity. You can check out all of my projects on <a href="https://github.com/frogtheastronaut" target="_blank" rel="noopener noreferrer">GitHub</a>.
               <br></br><br></br>
               I also have a blog, written in Next.js and Strapi, where I talk about coding-related topics, as well the projects I've made.<br></br><br></br>
-              Note that it sometimes takes a while to load as it's hosted on a free tier server. The link isn't broken, if it takes a long time it means the server's waking up. Apologies in advance and thank you for your patience!
             </>),
           }}
           imgRef={imgRefs[2]}
@@ -285,6 +284,7 @@ export default function Page() {
         >
           Visit my Blog!
         </Link>
+          <div className="mt-2 text-sm text-blue-200 opacity-70 font-mono text-center">Note: Blog may take a long time to load</div>
         <section className="w-full max-w-6xl py-16 flex flex-col items-center gap-6 bg-[#232634] rounded-2xl shadow-2xl border border-[#c6d0f5] mt-8">
           <h2 className="font-extrabold text-4xl text-center drop-shadow-lg mb-2 font-[Fira_Mono,Menlo,monospace]" style={{ color: '#c6d0f5' }}><strong>Contact Me!</strong></h2>
           <div className="flex flex-col items-center gap-2 text-xl">

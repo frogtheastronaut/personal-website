@@ -7,7 +7,7 @@ const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
 export const metadata = {
   title: "Ethan's Blog",
-  description: "Welcome to my blog! Here you'll find posts about my coding journey, projects, and thoughts on technology. Feel free to explore and check back for new updates.",
+  description: "Ethan Zhang's personal blog about coding and technology.",
 };
 
 export default async function Blog() {
@@ -28,7 +28,9 @@ export default async function Blog() {
         <section className="w-full max-w-3xl mb-8">
           <p className="text-blue-200 text-lg text-center font-mono">
             Welcome to my blog! Here you'll find posts about my coding journey, projects, and thoughts on technology. Feel free to explore and check back for new updates.
+            <br></br><br></br>
           </p>
+          <div className="mt-2 text-sm text-blue-200 opacity-70 font-mono text-center">Note: Posts may take a long time to load</div>
         </section>
         {posts.length === 0 && <p className="text-blue-200 text-xl">No posts found.</p>}
         <ul className="w-full max-w-3xl flex flex-col gap-8">
