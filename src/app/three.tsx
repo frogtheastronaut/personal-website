@@ -7,16 +7,16 @@ export default function DuckThree() {
 	const mountRef = useRef(null);
 
 	useEffect(() => {
-		let renderer, scene, camera, duck, animationId;
-		let spinDirection = new THREE.Vector3(0, 0, 0);
+		let duck, animationId;
+		const spinDirection = new THREE.Vector3(0, 0, 0);
 		let isSpinning = false;
 
 		// Scene setup
-		scene = new THREE.Scene();
-		camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 		camera.position.z = 3;
 
-		renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		renderer.domElement.style.position = "fixed";
 		renderer.domElement.style.top = "0";
@@ -38,14 +38,14 @@ export default function DuckThree() {
 		// Load duck.glb
 		const loader = new GLTFLoader();
 		loader.load("/objects/duckie.glb", (gltf) => {
-		duck = gltf.scene;
-		duck.scale.set(0.7, 0.7, 0.7);
-		scene.add(duck);
+			duck = gltf.scene;
+			duck.scale.set(0.7, 0.7, 0.7);
+			scene.add(duck);
 		});
 
 		// Cursor tracking
-		let target = new THREE.Vector3(0, 0, 0);
-		let lastCursor = { x: 0, y: 0 };
+		const target = new THREE.Vector3(0, 0, 0);
+		const lastCursor = { x: 0, y: 0 };
 		const onMouseMove = (e) => {
 			// Convert cursor to normalized device coordinates
 			const x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -68,7 +68,7 @@ export default function DuckThree() {
 				if (dist < 0.05) {
 					if (!isSpinning) {
 						// Random spin axis
-						spinDirection = new THREE.Vector3(Math.random(), Math.random(), Math.random()).normalize();
+						spinDirection.set(Math.random(), Math.random(), Math.random()).normalize();
 						isSpinning = true;
 					}
 					duck.rotateOnAxis(spinDirection, 0.08);
