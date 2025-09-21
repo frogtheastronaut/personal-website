@@ -1,6 +1,7 @@
 
 "use client";
 import Head from "next/head";
+import DuckThree from "./three";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -229,7 +230,8 @@ export default function Page() {
   
   return (
     <>
-      <main className={main}>
+  <DuckThree />
+  <main className={main}>
         <Section
           headingLevel={2}
           headingText={typedHeadings[0]}
