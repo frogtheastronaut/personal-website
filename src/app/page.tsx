@@ -15,7 +15,7 @@ const description = "animated-text text-xl text-transparent bg-clip-text bg-grad
 const section = "w-full max-w-6xl py-20 flex flex-col items-center gap-12";
 const image = "rounded-3xl w-full max-w-2xl object-cover";
 const container = "flex flex-row w-full max-w-6xl items-center justify-center gap-24 relative";
-const main = "min-h-screen w-full bg-[#232634] flex flex-col items-center justify-center font-[Fira_Mono,Menlo,monospace]";
+const main = "min-h-screen w-full flex flex-col items-center justify-center font-[Fira_Mono,Menlo,monospace] relative z-10";
 
 // Section component
 type SectionProps = {
@@ -290,8 +290,8 @@ export default function Page() {
           Visit my Blog!
         </Link>
           <div className="mt-2 text-sm text-blue-200 opacity-70 font-mono text-center">Note: Blog may take a long time to load</div>
-        <section className="w-full max-w-6xl py-16 flex flex-col items-center gap-6 bg-[#232634] rounded-2xl shadow-2xl border border-[#c6d0f5] mt-8">
-          <h2 className="font-extrabold text-4xl text-center drop-shadow-lg mb-2 font-[Fira_Mono,Menlo,monospace]" style={{ color: '#c6d0f5' }}><strong>Contact Me!</strong></h2>
+        <section className="w-full max-w-6xl py-16 flex flex-col items-center gap-6 rounded-2xl shadow-2xl mt-8">
+          <h2 className="font-extrabold text-4xl text-center drop-shadow-lg mb-2 font-[Fira_Mono,Menlo,monospace]" ><strong>Contact Me!</strong></h2>
           <div className="flex flex-col items-center gap-2 text-xl">
             <a
               href="https://github.com/frogtheastronaut"
