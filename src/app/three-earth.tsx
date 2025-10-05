@@ -52,7 +52,7 @@ export default function ThreeEarth() {
 		// Progress callback (optional)
 		undefined,
 		// Error callback
-		(error) => {
+		(error: ErrorEvent) => {
 			console.error('Error loading earth model:', error);
 			setIsLoading(false); // Hide spinner even on error
 		});
