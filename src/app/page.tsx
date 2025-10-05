@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Analytics } from "@vercel/analytics/next"
 
 // Classes
 const heading = "animated-text font-extrabold drop-shadow-lg w-[90vw] max-w-[90vw] mx-auto text-center font-[Fira_Mono,Menlo,monospace]";
