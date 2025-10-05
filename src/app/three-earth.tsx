@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import LoadingSpinner from "./loading-spinner";
 
 export default function ThreeEarth() {
 	const mountRef = useRef<HTMLDivElement | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		let earth: THREE.Object3D | null = null;
@@ -43,7 +45,16 @@ export default function ThreeEarth() {
 				earth.scale.set(1.2, 1.2, 1.2);
 				earth.position.set(0, 0, 0);
 				scene.add(earth);
+				// Hide loading spinner once earth is loaded
+				setIsLoading(false);
 			}
+		}, 
+		// Progress callback (optional)
+		undefined,
+		// Error callback
+		(error) => {
+			console.error('Error loading earth model:', error);
+			setIsLoading(false); // Hide spinner even on error
 		});
 
 		// Animation loop
@@ -79,5 +90,10 @@ export default function ThreeEarth() {
 	}, []);
 
 	// The div should be at the top level of the app, so the canvas is always behind text
-	return <div ref={mountRef} style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 0, pointerEvents: "none" }} />;
+	return (
+		<>
+			<LoadingSpinner isLoading={isLoading} />
+			<div ref={mountRef} style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 0, pointerEvents: "none" }} />
+		</>
+	);
 }

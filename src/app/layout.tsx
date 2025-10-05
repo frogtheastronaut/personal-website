@@ -27,7 +27,6 @@ export default function RootLayout({
       <head>
         {/* Favicons */}
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
       <body
