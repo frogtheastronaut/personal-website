@@ -103,6 +103,15 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               img({ src, alt }) {
                 return <img src={src} alt={alt} className="w-full rounded-2xl my-4" />;
               },
+              ul({ children }) {
+                return <ul className="list-disc list-inside mb-4 pl-6 text-blue-200 font-mono text-lg">{children}</ul>;
+              },
+              ol({ children }) {
+                return <ol className="list-decimal list-inside mb-4 pl-6 text-blue-200 font-mono text-lg">{children}</ol>;
+              },
+              li({ children }) {
+                return <li className="mb-2">{children}</li>;
+              },
             }}
           >
             {post.content}
