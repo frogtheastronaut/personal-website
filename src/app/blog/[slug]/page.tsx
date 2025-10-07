@@ -3,7 +3,9 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from "remark-breaks";
+import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
+import rehypeKatex from "rehype-katex";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import axios from "axios";
@@ -59,8 +61,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </p>
         <article className="w-full max-w-3xl bg-[#232634] p-8 mb-8 text-blue-200">
           <ReactMarkdown
-            remarkPlugins={[remarkGfm, remarkBreaks]}
-            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
+            rehypePlugins={[rehypeRaw, rehypeKatex]}
             components={{
               code({ node, inline, className, children, ...props }: any) {
                 const match = /language-(\w+)/.exec(className || "");
@@ -105,6 +107,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           >
             {post.content}
           </ReactMarkdown>
+          {/* KaTeX CSS for math rendering */}
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+            crossOrigin="anonymous"
+          />
         </article>
         <Link
           href="/blog"

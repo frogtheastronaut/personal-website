@@ -21,7 +21,8 @@ export default async function Blog() {
   }
 
   return (
-    <main className="min-h-screen w-full bg-[#232634] flex flex-col items-center justify-center font-[Fira_Mono,Menlo,monospace] py-16">
+    <>
+      <main className="min-h-screen w-full bg-[#232634] flex flex-col items-center justify-center font-[Fira_Mono,Menlo,monospace] py-16">
       <h1 className="font-extrabold text-5xl drop-shadow-lg text-center mb-4" style={{ color: '#c6d0f5' }}>Ethan's Blog</h1>
       <section className="w-full max-w-3xl mb-8">
         <p className="text-blue-200 text-lg text-center font-mono">
@@ -53,5 +54,12 @@ export default async function Blog() {
         ← Back to Home
       </Link>
     </main>
+    {/* KaTeX CSS for math rendering */}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      crossOrigin="anonymous"
+    />
+    </>
   );
 }
