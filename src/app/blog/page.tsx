@@ -13,7 +13,7 @@ export default async function Blog() {
   let posts: any[] = [];
 
   try {
-    const res = await fetch(`${STRAPI_URL}/api/posts`, { next: { revalidate: 60 } });
+    const res = await fetch(`${STRAPI_URL}/api/posts?sort=publishDate:desc`, { next: { revalidate: 60 } });
     const data = await res.json();
     posts = data.data || [];
   } catch (error: any) {
