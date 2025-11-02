@@ -56,7 +56,7 @@ export default function Page() {
   ];
 
   // Reusable function to create animated color box effect
-  const createColorBoxAnimation = (containerRef: React.RefObject<HTMLDivElement>) => {
+  const createColorBoxAnimation = (containerRef: React.RefObject<HTMLDivElement | null>) => {
     const container = containerRef.current;
     if (!container) return null;
 
