@@ -3,13 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: var(--font-jetbrains-mono) !important;
+  --font-mono: var(--font-jetbrains-mono) !important;
+
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +20,14 @@
   }
 }
 
+.text-accent {
+  color: #FF6B6B;
+  /*bold*/
+  font-weight: 800;
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

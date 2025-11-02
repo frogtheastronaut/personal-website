@@ -22,44 +22,76 @@ export default async function Blog() {
 
   return (
     <>
-      <main className="min-h-screen w-full bg-[#232634] flex flex-col items-center justify-center font-[Fira_Mono,Menlo,monospace] py-16">
-      <h1 className="font-extrabold text-5xl drop-shadow-lg text-center mb-4" style={{ color: '#c6d0f5' }}>Ethan's Blog</h1>
-      <section className="w-full max-w-3xl mb-8">
-        <p className="text-blue-200 text-lg text-center font-mono">
-          Welcome to my blog! Here you'll find posts about my coding journey, projects, and thoughts on technology. Feel free to explore and check back for new updates.
-          <br /><br />
-        </p>
-        <div className="mt-2 text-sm text-blue-200 opacity-70 font-mono text-center">Note: Posts may take a long time to load</div>
-      </section>
-      {posts.length === 0 && <p className="text-blue-200 text-xl">No posts found.</p>}
-      <ul className="w-full max-w-3xl flex flex-col gap-8">
-        {posts.map((post: any) => (
-          <li key={post.id} className="bg-[#232634] rounded-2xl shadow-xl p-8 flex flex-col gap-2">
-            <Link
-              href={`/blog/${post.slug}`}
-              className="text-3xl font-bold text-blue-200 hover:text-blue-400 transition-colors underline"
-            >
-              {post.title}
-            </Link>
-            <p className="text-base text-blue-200 font-mono">
-              {post.author} — {new Date(post.publishDate).toLocaleDateString()}
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div className="max-w-5xl mx-auto px-8 py-6 flex items-center justify-between">
+          <Link href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
+            ETHAN ZHANG
+          </Link>
+          <Link 
+            href="/" 
+            className="text-sm tracking-wider hover:opacity-70 transition-opacity"
+          >
+            HOME
+          </Link>
+        </div>
+      </nav>
+
+      <main className="min-h-screen w-full bg-white pt-32 pb-20">
+        <div className="max-w-5xl mx-auto px-8">
+          {/* Header */}
+          <header className="mb-16">
+            <h1 className="text-6xl font-bold mb-6 tracking-tight">Blog</h1>
+            <p className="text-xl opacity-70 leading-relaxed max-w-2xl">
+              Welcome to my blog! Here you'll find posts about my coding journey, projects, and thoughts on technology.
             </p>
-          </li>
-        ))}
-      </ul>
-      <Link
-        href="/"
-        className="mt-12 px-8 py-3 rounded-full bg-gradient-to-r from-white via-white to-blue-200 text-black font-semibold shadow-xl transition-all duration-200 text-xl font-[Fira_Mono,Menlo,monospace]"
-      >
-        ← Back to Home
-      </Link>
-    </main>
-    {/* KaTeX CSS for math rendering */}
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-      crossOrigin="anonymous"
-    />
+          </header>
+
+          {/* Posts Grid */}
+          {posts.length === 0 ? (
+            <p className="text-xl opacity-60 text-center py-20">No posts found.</p>
+          ) : (
+            <div className="grid gap-12">
+              {posts.map((post: any) => (
+                <article key={post.id} className="group">
+                  <Link href={`/blog/${post.slug}`} className="block">
+                    <div className="flex flex-col gap-4">
+                      <h2 className="text-3xl font-bold group-hover:opacity-70 transition-opacity leading-tight">
+                        {post.title}
+                      </h2>
+                      <div className="flex items-center gap-4 text-sm opacity-60">
+                        <span>{post.author}</span>
+                        <span>•</span>
+                        <time>{new Date(post.publishDate).toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}</time>
+                      </div>
+                      {post.excerpt && (
+                        <p className="text-lg opacity-70 leading-relaxed line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                      )}
+                      <div className="text-sm font-semibold group-hover:underline">
+                        Read more →
+                      </div>
+                    </div>
+                  </Link>
+                  <div className="mt-8 border-b border-gray-200"></div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* KaTeX CSS for math rendering */}
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        crossOrigin="anonymous"
+      />
     </>
   );
 }
