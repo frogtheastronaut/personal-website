@@ -12,6 +12,7 @@ import axios from "axios";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
+import ScrollProgressNav from "@/components/ScrollProgressNav";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
@@ -52,46 +53,35 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
   const post = postData;
   return (
-    <>
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-4xl mx-auto px-8 py-6 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
-            ETHAN ZHANG
-          </Link>
-          <Link 
-            href="/blog" 
-            className="text-sm tracking-wider hover:opacity-70 transition-opacity"
-          >
-            BLOG
-          </Link>
-        </div>
-      </nav>
+    <div className="bg-[#111] min-h-screen text-white selection:bg-yellow-400 selection:text-black">
+      <ScrollProgressNav />
 
-      <main className="min-h-screen w-full bg-white pt-32 pb-20">
-        <article className="max-w-4xl mx-auto px-8">
+      <main className="w-full pt-40 pb-20 px-8">
+        <article className="max-w-4xl mx-auto">
           {/* Article Header */}
-          <header className="mb-12">
-            <h1 className="text-5xl font-bold mb-6 leading-tight tracking-tight">
-              {post.title}
-            </h1>
-            <div className="flex items-center gap-4 text-base opacity-60">
-              <span className="font-medium">{post.author}</span>
-              <span>•</span>
+          <header className="mb-20 border-b border-zinc-800 pb-12">
+            <div className="flex items-center gap-4 text-sm font-mono text-emerald-400 mb-6 uppercase tracking-widest">
               <time>{new Date(post.publishDate).toLocaleDateString('en-US', { 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric' 
               })}</time>
+              <span className="text-zinc-500">{post.author || "Ethan Zhang"}</span>
             </div>
+            <h1 className="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight text-white">
+              {post.title}
+            </h1>
           </header>
 
           {/* Article Content */}
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-xl prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:text-zinc-300 prose-p:leading-relaxed prose-a:text-yellow-400 prose-a:no-underline hover:prose-a:underline prose-code:text-emerald-400 prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800">
             <ReactMarkdown
               remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
               rehypePlugins={[rehypeRaw, rehypeKatex]}
               components={{
+                img: ({node, ...props}) => (
+                  <img className="w-full rounded-xl my-8 shadow-lg" {...props} />
+                ),
                 code({ node, inline, className, children, ...props }: any) {
                   const match = /language-(\w+)/.exec(className || "");
                   return !inline && match ? (
@@ -99,69 +89,25 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                       style={oneDark as any}
                       language={match[1]}
                       PreTag="div"
-                      className="rounded-xl !bg-gray-900 my-6"
+                      customStyle={{
+                        background: 'transparent',
+                        padding: 0,
+                        margin: 0,
+                      }}
                       {...props}
                     >
                       {String(children).replace(/\n$/, "")}
                     </SyntaxHighlighter>
                   ) : (
-                    <code className="bg-gray-100 text-gray-900 px-2 py-1 rounded text-sm font-mono" {...props}>
+                    <code className={className} {...props}>
                       {children}
                     </code>
-                  );
-                },
-                h1({ children }) {
-                  return <h1 className="text-4xl font-bold mt-12 mb-6 leading-tight">{children}</h1>;
-                },
-                h2({ children }) {
-                  return <h2 className="text-3xl font-bold mt-10 mb-5 leading-tight">{children}</h2>;
-                },
-                h3({ children }) {
-                  return <h3 className="text-2xl font-bold mt-8 mb-4 leading-tight">{children}</h3>;
-                },
-                p({ children }) {
-                  return <p className="mb-6 text-lg leading-relaxed opacity-90">{children}</p>;
-                },
-                a({ href, children }) {
-                  return (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 underline font-medium">
-                      {children}
-                    </a>
-                  );
-                },
-                img({ src, alt }) {
-                  return <img src={src} alt={alt} className="w-full rounded-xl my-8 shadow-lg" />;
-                },
-                ul({ children }) {
-                  return <ul className="list-disc list-outside mb-6 pl-6 space-y-2 text-lg leading-relaxed opacity-90">{children}</ul>;
-                },
-                ol({ children }) {
-                  return <ol className="list-decimal list-outside mb-6 pl-6 space-y-2 text-lg leading-relaxed opacity-90">{children}</ol>;
-                },
-                li({ children }) {
-                  return <li className="mb-2">{children}</li>;
-                },
-                blockquote({ children }) {
-                  return (
-                    <blockquote className="border-l-4 border-gray-300 pl-6 py-2 my-6 italic text-gray-700">
-                      {children}
-                    </blockquote>
                   );
                 },
               }}
             >
               {post.content}
             </ReactMarkdown>
-          </div>
-
-          {/* Back to Blog Link */}
-          <div className="mt-16 pt-8 border-t border-gray-200">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-lg font-medium hover:opacity-70 transition-opacity"
-            >
-              ← Back to all posts
-            </Link>
           </div>
         </article>
       </main>
@@ -172,6 +118,6 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
         crossOrigin="anonymous"
       />
-    </>
+    </div>
   );
 }

@@ -9,12 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.0",
+    "@react-three/postprocessing": "^3.0.4",
     "@vercel/analytics": "^1.5.0",
     "axios": "^1.12.2",
-    "gsap": "^3.13.0",
+    "framer-motion": "^12.23.24",
     "katex": "^0.16.23",
     "locomotive-scroll": "^4.1.4",
+    "lucide-react": "^0.554.0",
     "next": "15.5.3",
+    "postprocessing": "^6.38.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0",
@@ -29,6 +34,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

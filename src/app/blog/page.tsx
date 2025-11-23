@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
@@ -21,64 +22,68 @@ export default async function Blog() {
   }
 
   return (
-    <>
+    <div className="bg-[#111] min-h-screen text-white selection:bg-yellow-400 selection:text-black">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-5xl mx-auto px-8 py-6 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#111]/80 backdrop-blur-md border-b border-zinc-800">
+        <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+          <Link href="/" className="text-xl font-black tracking-tighter hover:text-zinc-400 transition-colors">
             ETHAN ZHANG
           </Link>
           <Link 
             href="/" 
-            className="text-sm tracking-wider hover:opacity-70 transition-opacity"
+            className="text-sm font-bold tracking-widest hover:text-yellow-400 transition-colors"
           >
             HOME
           </Link>
         </div>
       </nav>
 
-      <main className="min-h-screen w-full bg-white pt-32 pb-20">
-        <div className="max-w-5xl mx-auto px-8">
+      <main className="w-full pt-40 pb-20 px-8">
+        <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <header className="mb-16">
-            <h1 className="text-6xl font-bold mb-6 tracking-tight">Blog</h1>
-            <p className="text-xl opacity-70 leading-relaxed max-w-2xl">
-              Welcome to my blog! Here you'll find posts about my coding journey, projects, and thoughts on technology.
+          <header className="mb-24 border-b border-zinc-800 pb-12">
+            <h1 className="text-8xl font-black mb-8 tracking-tighter uppercase">The Blog</h1>
+            <p className="text-2xl text-zinc-400 leading-relaxed max-w-3xl font-medium">
+              My thoughts on code, design, and the internet.
             </p>
           </header>
 
           {/* Posts Grid */}
           {posts.length === 0 ? (
-            <p className="text-xl opacity-60 text-center py-20">No posts found.</p>
+            <div className="py-20 text-center border border-zinc-800 border-dashed rounded-2xl">
+              <p className="text-2xl text-zinc-500 font-bold">No posts found.</p>
+            </div>
           ) : (
-            <div className="grid gap-12">
+            <div className="flex flex-col">
               {posts.map((post: any) => (
-                <article key={post.id} className="group">
-                  <Link href={`/blog/${post.slug}`} className="block">
-                    <div className="flex flex-col gap-4">
-                      <h2 className="text-3xl font-bold group-hover:opacity-70 transition-opacity leading-tight">
+                <article key={post.id} className="group border-b border-zinc-800 last:border-none">
+                  <Link href={`/blog/${post.slug}`} className="grid grid-cols-1 md:grid-cols-12 gap-8 py-16 hover:bg-zinc-900/30 transition-colors px-4 -mx-4 rounded-xl">
+                    {/* Date Column */}
+                    <div className="md:col-span-3 flex flex-col justify-between">
+                      <span className="text-zinc-500 font-mono text-sm uppercase tracking-widest">
+                        {new Date(post.publishDate).toLocaleDateString('en-US', {
+                          month: 'long',
+                          day: 'numeric',
+                          year: 'numeric'
+                        })}
+                      </span>
+                    </div>
+
+                    {/* Content Column */}
+                    <div className="md:col-span-9">
+                      <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 group-hover:text-yellow-400 transition-colors leading-tight">
                         {post.title}
                       </h2>
-                      <div className="flex items-center gap-4 text-sm opacity-60">
-                        <span>{post.author}</span>
-                        <span>•</span>
-                        <time>{new Date(post.publishDate).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
-                        })}</time>
-                      </div>
-                      {post.excerpt && (
-                        <p className="text-lg opacity-70 leading-relaxed line-clamp-3">
-                          {post.excerpt}
+                      {post.description && (
+                        <p className="text-zinc-400 text-xl leading-relaxed max-w-4xl group-hover:text-zinc-300 transition-colors mb-8">
+                          {post.description}
                         </p>
                       )}
-                      <div className="text-sm font-semibold group-hover:underline">
-                        Read more →
+                      <div className="flex items-center text-emerald-400 font-bold text-lg opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                        READ ARTICLE <ArrowRight className="ml-2" size={24} />
                       </div>
                     </div>
                   </Link>
-                  <div className="mt-8 border-b border-gray-200"></div>
                 </article>
               ))}
             </div>
@@ -92,6 +97,6 @@ export default async function Blog() {
         href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
         crossOrigin="anonymous"
       />
-    </>
+    </div>
   );
 }
