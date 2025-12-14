@@ -84,10 +84,10 @@ export default async function Page() {
       <About />
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 bg-[#111]">
+      <section id="projects" className="py-16 md:py-32 bg-[#111]">
         <div className="w-full">
-          <div className="mb-20 max-w-7xl mx-auto px-8 flex items-end justify-between border-b border-zinc-800 pb-8">
-            <h2 className="text-6xl md:text-8xl font-black tracking-tighter text-white uppercase">PROJECTS</h2>
+          <div className="mb-12 md:mb-20 max-w-7xl mx-auto px-4 md:px-8 flex items-end justify-between border-b border-zinc-800 pb-8">
+            <h2 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter text-white uppercase">PROJECTS</h2>
           </div>
           
           <ProjectList projects={PROJECTS} />

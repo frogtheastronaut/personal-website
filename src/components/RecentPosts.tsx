@@ -24,13 +24,13 @@ export default function RecentPosts({ posts }: { posts: Post[] }) {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section className="py-32 px-8 bg-[#111]">
+    <section className="py-16 md:py-32 px-4 md:px-8 bg-[#111]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-20 border-b border-zinc-800 pb-8">
-          <h2 className="text-6xl font-black text-white tracking-tighter uppercase">The Blog</h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 border-b border-zinc-800 pb-8 gap-4">
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase">The Blog</h2>
           <Link 
             href="/blog" 
-            className="group flex items-center gap-2 text-xl font-bold text-zinc-500 hover:text-white transition-colors"
+            className="group flex items-center gap-2 text-lg md:text-xl font-bold text-zinc-500 hover:text-white transition-colors"
           >
             ALL POSTS
             <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />

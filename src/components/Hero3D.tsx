@@ -1,13 +1,15 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, ContactShadows, Environment, Torus, Sphere, Box, Cone, Icosahedron } from "@react-three/drei";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 
 function Geometries() {
   const groupRef = useRef<THREE.Group>(null);
-  
+  const { viewport } = useThree();
+  const isMobile = viewport.width < 5; // Adjust threshold as needed
+
   useFrame((state) => {
     if (groupRef.current) {
       groupRef.current.rotation.y = state.clock.getElapsedTime() * 0.1;
@@ -15,8 +17,10 @@ function Geometries() {
     }
   });
 
+  const scale = isMobile ? 0.6 : 1;
+
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} scale={scale}>
       <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
         <Torus position={[2, 2, 0]} args={[0.8, 0.2, 16, 32]} rotation={[0.5, 0.5, 0]}>
           <meshStandardMaterial color="#FF6B6B" roughness={0.2} metalness={0.5} />
