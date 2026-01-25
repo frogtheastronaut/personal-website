@@ -6,7 +6,7 @@ import { Suspense, useRef, useMemo, useEffect, useState } from "react";
 import * as THREE from "three";
 
 // Shader Logic
-const patchShaders = (shader: THREE.Shader) => {
+const patchShaders = (shader: any) => {
   // Correctly initialize uniforms with unique Vector4 instances
   shader.uniforms.uTrail = { value: new Array(20).fill(null).map(() => new THREE.Vector4(0, 0, 0, 0)) };
   shader.uniforms.uTrailLength = { value: 0 };
@@ -178,7 +178,7 @@ function Duckie(props: any) {
     
     // Update Uniforms
     meshRefs.current.forEach((mesh) => {
-       const mat = mesh.material;
+       const mat = mesh.material as THREE.Material;
        if (mat.userData.shader) {
          const uTrail = mat.userData.shader.uniforms.uTrail.value;
          

@@ -84,7 +84,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
               rehypePlugins={[rehypeRaw, rehypeKatex]}
               components={{
                 img: ({node, ...props}) => (
-                  <img className="w-full rounded-2xl my-8 border border-white/10" {...props} />
+                  <img className="w-full rounded-2xl my-8 border border-white/10" alt={props.alt || "Blog Image"} {...props} />
                 ),
                 code({ node, inline, className, children, ...props }: any) {
                   const match = /language-(\w+)/.exec(className || "");

@@ -41,7 +41,7 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
           >
             {/* Image Background */}
             <motion.div layoutId={`card-image-${project.id}`} className="absolute inset-0">
-               <img src={project.thumbnail} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+               <img src={project.thumbnail} alt={project.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
             </motion.div>
 
@@ -82,7 +82,7 @@ export default function ProjectList({ projects }: { projects: Project[] }) {
 
                   {/* Image Side */}
                   <motion.div layoutId={`card-image-${selectedProject.id}`} className="w-full md:w-3/5 h-[40vh] md:h-auto relative">
-                     <img src={selectedProject.thumbnail} className="w-full h-full object-cover" />
+                     <img src={selectedProject.thumbnail} alt={selectedProject.title} className="w-full h-full object-cover" />
                      <div className="absolute inset-0 bg-gradient-to-t from-[#111] md:bg-gradient-to-r md:from-transparent md:to-[#111]" />
                   </motion.div>
 
