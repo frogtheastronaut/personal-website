@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from 'next/font/google'
+import { JetBrains_Mono, Caveat, IBM_Plex_Sans } from 'next/font/google'
 import "./globals.css";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+});
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: '600',
+  variable: '--font-caveat',
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-ibm-plex-sans',
 });
 
 export const metadata: Metadata = {
@@ -17,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jetBrainsMono.className + " antialiased"}>
+    <html lang="en" className={`${jetBrainsMono.variable} ${caveat.variable} ${ibmPlexSans.variable} antialiased`}>
       <head>
         {/* Favicons */}
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />

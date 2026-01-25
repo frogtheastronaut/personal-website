@@ -4,7 +4,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-sans: var(--font-jetbrains-mono) !important;
+  --font-sans: var(--font-ibm-plex-sans) !important;
   --font-mono: var(--font-jetbrains-mono) !important;
 
 }
@@ -12,6 +12,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-caveat: var(--font-caveat);
+  --font-ibm-plex: var(--font-ibm-plex-sans);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-sans: var(--font-ibm-plex-sans);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,7 +26,7 @@
 }
 
 .text-accent {
-  color: #FF6B6B;
+  color: #dd7878;
   /*bold*/
   font-weight: 800;
 }
