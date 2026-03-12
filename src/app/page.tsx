@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import { motion } from "framer-motion";
 import HighlightText from "@/components/HighlightText";
 
+
 export default function Page() {
   return (
     <main className="h-screen w-full bg-[#0a0a0a] text-[#ededed] overflow-hidden flex flex-col font-mono selection:bg-[#2d2d2d] selection:text-[#ededed]">

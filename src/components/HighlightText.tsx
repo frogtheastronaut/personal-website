@@ -13,7 +13,7 @@ export default function HighlightText({
   text, 
   className = "", 
   delay = 0,
-  highlightColor = "#dd7878" // New Accent Color
+  highlightColor = ""
 }: HighlightTextProps) {
   
   const words = text.split(" ");

@@ -1,7 +1,6 @@
 "use client";
 
 import NavBar from "@/components/NavBar";
-import HighlightText from "@/components/HighlightText";
 import ProjectList from "@/components/ProjectList";
 import { motion } from "framer-motion";
 
@@ -14,6 +13,19 @@ const PROJECTS = [
     description: "A x86 operating system written in C and Assembly from scratch. Features a multitasking kernel, custom filesystem, and basic drivers.",
     github: "https://github.com/appleroll/moose-os",
     additionalLinks: [{ label: "Hackaday Article", url: "https://hackaday.com/2025/10/14/c-project-turns-into-full-fledged-os/" }]
+  },
+  {
+    id: 2,
+    title: "KernelGPT",
+    thumbnail: "https://github.com/appleroll/kernelgpt/blob/main/res/banner.png?raw=true",
+    image: "https://github.com/appleroll/kernelgpt/blob/main/res/banner.png?raw=true",
+    description: "KernelGPT is a from-scratch implementation of a GPT-2 AI written in pure C, running directly on bare metal x86 hardware.",
+    github: "https://github.com/appleroll/kernelgpt",
+    additionalLinks: [{
+      label: "Hackaday Article",
+      url: "https://hackaday.com/2026/03/03/building-a-dependency-free-gpt-on-a-custom-os/"
+    }]
+
   }
 ];
 
@@ -51,8 +63,7 @@ export default function AboutPage() {
                     <ul className="space-y-1">
                       <li>C</li>
                       <li>Python</li>
-                        <li>GitHub</li>
-                        <li>Huggingface</li>
+                      <li>Git</li>
                     </ul>
                   </div>
                   <div>
@@ -65,7 +76,6 @@ export default function AboutPage() {
                </div>
             </div>
 
-            {/* Projects Section */}
             <div className="space-y-8 pt-8 border-t border-white/10">
                <h2 className="text-6xl font-caveat text-white">Selected Works</h2>
                <div className="w-full">

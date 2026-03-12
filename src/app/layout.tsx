@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Caveat, IBM_Plex_Sans } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -38,6 +39,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   );
