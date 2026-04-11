@@ -1,4 +1,3 @@
-import NavBar from "@/components/NavBar";
 import BlogList from "@/components/BlogList";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -25,8 +24,6 @@ export default async function Blog() {
 
   return (
     <main className="min-h-screen w-full bg-[#0a0a0a] text-[#ededed] font-mono selection:bg-[#2d2d2d] selection:text-[#ededed]">
-      <NavBar />
-      
       <div className="max-w-4xl mx-auto px-8 pt-32 pb-20">
          <div className="flex flex-col gap-12">
             {/* Header */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Caveat, IBM_Plex_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next';
+import NavBar from "@/components/NavBar";
 import "./globals.css";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -35,9 +36,9 @@ export default function RootLayout({
       <head>
         {/* Favicons */}
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
       <body>
+        <NavBar></NavBar>
         {children}
         <Analytics />
       </body>
