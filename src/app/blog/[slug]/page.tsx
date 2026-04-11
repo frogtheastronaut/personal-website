@@ -10,7 +10,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import axios from "axios";
 import { notFound } from "next/navigation";
-import NavBar from "@/components/NavBar";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
 
@@ -52,8 +51,6 @@ export default async function BlogPost({ params }: { params: { slug: string } })
   const post = postData;
   return (
     <div className="bg-[#0a0a0a] min-h-screen text-[#ededed] font-mono selection:bg-[#dd7878] selection:text-white">
-      <NavBar />
-
       <main className="w-full pt-40 pb-20 px-8">
         <article className="max-w-3xl mx-auto">
           {/* Article Header */}

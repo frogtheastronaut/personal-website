@@ -1,6 +1,4 @@
 "use client";
-
-import NavBar from "@/components/NavBar";
 import ProjectList from "@/components/ProjectList";
 import { motion } from "framer-motion";
 
@@ -32,8 +30,6 @@ const PROJECTS = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen w-full bg-[#0a0a0a] text-[#ededed] font-mono selection:bg-[#2d2d2d] selection:text-[#ededed]">
-      <NavBar />
-      
       <div className="max-w-4xl mx-auto px-8 pt-32 pb-20">
          <motion.div 
            initial={{ opacity: 0, y: 20 }}

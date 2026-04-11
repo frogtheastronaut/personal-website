@@ -25,6 +25,10 @@
   }
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 .text-accent {
   color: #dd7878;
   /*bold*/

@@ -1,7 +1,6 @@
 "use client";
 
 import DuckieScene from "@/components/DuckieScene";
-import NavBar from "@/components/NavBar";
 import { motion } from "framer-motion";
 import HighlightText from "@/components/HighlightText";
 
@@ -9,9 +8,6 @@ import HighlightText from "@/components/HighlightText";
 export default function Page() {
   return (
     <main className="h-screen w-full bg-[#0a0a0a] text-[#ededed] overflow-hidden flex flex-col font-mono selection:bg-[#2d2d2d] selection:text-[#ededed]">
-      
-      <NavBar />
-
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center max-w-7xl mx-auto w-full px-8 md:px-16 pt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 w-full h-full items-center">
